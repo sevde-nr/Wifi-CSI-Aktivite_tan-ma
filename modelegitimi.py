@@ -66,8 +66,8 @@ def veri_setini_yukle_akilli_filtreli(data_klasor_yolu):
     return np.array(X_list), np.array(y_list)
 
 
-klasor_yolun = r"C:\Users\sevde\Desktop\Wifi_Project\wifiprocektphtyn\wiar_data"
-X_raw, y_raw = veri_setini_yukle_akilli_filtreli(klasor_yolun)
+klasor_yolu = r"C:\Users\sevde\Desktop\Wifi_Project\wifiprocektphtyn\wiar_data"
+X_raw, y_raw = veri_setini_yukle_akilli_filtreli(klasor_yolu)
 
 if X_raw.size == 0:
     print("HATA: Dosyalar yüklenemedi!")
@@ -122,7 +122,7 @@ else:
     model.summary()
 
 
-    model_kayit_yolu = r"C:\Users\sevde\Desktop\Wifi_Project\wifiprocektphtyn\en_son_modelin.h5"
+    model_kayit_yolu = r"C:\Users\sevde\Desktop\Wifi_Project\wifiprocektphtyn\en_son_model.h5"
     
    
     checkpoint = ModelCheckpoint(
@@ -143,13 +143,13 @@ else:
     )
 
 
-    print("\n--- Ezber Engelleyici ve Takipli Model Eğitimi Başlıyor ---")
+    print("\n--- Model Eğitimi Başlıyor ---")
     history = model.fit(
         X_train, y_train,
         epochs=EPOCHS, 
         batch_size=BATCH_SIZE, 
         validation_data=(X_test, y_test),
-        callbacks=[checkpoint, early_stop], # Akıllı araçları sürece dahil ettik
+        callbacks=[checkpoint, early_stop], 
         verbose=1
     )
     print("\nModel Eğitimi Başarıyla Tamamlandı!")
